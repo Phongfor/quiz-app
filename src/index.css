@@ -1,0 +1,129 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    border: 1px solid;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container{
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 15px;
+}
+
+.quizz{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title{
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+}
+
+.question{
+    margin-top: 15px;
+}
+
+.question li{
+    margin-top: 20px;
+    list-style: none;
+}
+
+.answers li button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #f0f0f0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.2s ease; 
+}
+
+
+.answers li button:hover {
+    background: #ccc;
+    transform: scale(1.02); 
+}
+
+
+.answers li button:focus {
+    background: #aaa;
+    transform: scale(0.98); 
+}
+
+.answers li button.correct {
+    background: #4CAF50; 
+    color: #fff;
+    border: none;
+    animation: correctEffect 0.3s ease;
+}
+
+
+.answers li button.wrong {
+    background: #f44336; 
+    color: #fff;
+    border: none;
+    animation: wrongEffect 0.3s ease;
+}
+
+
+.answers li button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.correct-answer{
+    color: #4CAF50;
+}
+
+.incorrect-answer{
+    color: #f44336;
+}
+
+.nav-button {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-button button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: blue;
+    color: #fff;
+}
+
+
+@keyframes wrongEffect {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+
+
+@keyframes correctEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
