@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-
+import React, { useEffect, useState } from "react"
+import Result from './Result'
 
 const quizzData = [
   {
@@ -57,47 +57,81 @@ const quizzData = [
 
 function Quizz(){
 
-  const [userAnswers,setuserAnswers] = useState([])
+  const [userAnswers,setUserAnswers] = useState([])
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [endAnswers,setEndAnswers] = useState(false)
+  const [showResult, setShowResult] = useState(false);
+  const [score, setScore] = useState(0)
 
   const handleSelectAnswer = (optionIndex) => {
      setSelectedAnswer(optionIndex)
-     setuserAnswers((preUserAnswers) => {
-      return [...preUserAnswers,optionIndex]
-     })
+     setUserAnswers(prev => {
+    const next = [...prev];
+    next[currentQuestion] = optionIndex;
+    return next;
+  })
+  }
+
+  const restoreQuizz = () => {
+    setUserAnswers([])
+    setCurrentQuestion(0)
+    setSelectedAnswer(null)
+    setEndAnswers(false)
+    setShowResult(false)
+    setScore(0)
   }
 
   const goNext = () => {
-  if (currentQuestion < quizzData.length - 1) {
-    const answer = userAnswers[currentQuestion + 1];
-
+    
+  if (currentQuestion < quizzData.length - 1) { 
     setCurrentQuestion((pre) => pre + 1);
-
-    if (answer !== undefined) {
-      setSelectedAnswer(answer); 
-    } else {
-      setSelectedAnswer(null);   
-    }
   }
-};
-
+  if(endAnswers){
+    setShowResult(true)
+  }
+}
 
  const goBack = () => {
   if (currentQuestion > 0) {
-    const answer = userAnswers[currentQuestion - 1];
-
     setCurrentQuestion((pre) => pre - 1);
-
-    if (answer !== undefined) {
-      setSelectedAnswer(answer);
-    } else {
-      setSelectedAnswer(null);
-    }
   }
-};
+}
 
-    
+useEffect(() => {
+  if (
+    userAnswers.length === quizzData.length &&
+    !userAnswers.some(ans => ans === undefined)
+  ) {
+    setEndAnswers(true)
+  }
+}, [userAnswers])
+
+
+useEffect(() => {
+   const answer = userAnswers[currentQuestion];
+   
+    if (answer !== undefined) {
+      setSelectedAnswer(answer)
+    } else {
+      setSelectedAnswer(null)
+    }
+},[currentQuestion,userAnswers])
+
+useEffect(() => {
+  if(selectedAnswer === quizzData[currentQuestion].answer){
+    setScore(prev => prev + 1)
+  }
+},selectedAnswer)
+
+  if(showResult){
+    return <Result
+              score={score}
+              totalQuestionNum={quizzData.length}
+              restoreQuizz={restoreQuizz}
+          />
+  }
+
     return(
         <>
           <div className="quizz">
@@ -134,7 +168,7 @@ function Quizz(){
 
               <div className="nav-button">
                 <button onClick={goBack}>Previous</button>
-                <button onClick={goNext}>Next</button>
+                <button onClick={goNext}>{endAnswers?"Complete":"Next"}</button>
               </div>
           </div>
         </>

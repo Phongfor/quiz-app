@@ -65,16 +65,10 @@ body{
 }
 
 
-.answers li button:focus {
-    background: #aaa;
-    transform: scale(0.98); 
-}
-
 .answers li button.correct {
     background: #4CAF50; 
     color: #fff;
     border: none;
-    animation: correctEffect 0.3s ease;
 }
 
 
@@ -82,13 +76,6 @@ body{
     background: #f44336; 
     color: #fff;
     border: none;
-    animation: wrongEffect 0.3s ease;
-}
-
-
-.answers li button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .correct-answer{
@@ -112,18 +99,65 @@ body{
     color: #fff;
 }
 
-
-@keyframes wrongEffect {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-4px); }
-    50% { transform: translateX(4px); }
-    75% { transform: translateX(-4px); }
-    100% { transform: translateX(0); }
+.result-screen {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
 }
 
+.result-screen h2 {
+    margin-bottom: 40px;
+}
 
-@keyframes correctEffect {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+.summary-box {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.total,
+.correct,
+.wrong {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.correct {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.wrong {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.result-details {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.result-item {
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 5px solid #3498db;
+}
+
+.restart-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.restart-btn:hover {
+  background: #2980b9;
 }
