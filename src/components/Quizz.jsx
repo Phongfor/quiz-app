@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
+import "../assets/CSS/Quizz.css"
 import Result from './Result'
-
+import ProgressBar from "./ProgressBar";
 const quizzData = [
   {
     "question": "Hệ điều hành nào là mã nguồn mở?",
@@ -135,6 +136,7 @@ useEffect(() => {
     return(
         <>
           <div className="quizz">
+            <ProgressBar  progress={(currentQuestion + 1) / quizzData.length * 100}></ProgressBar>
               <div className="question">
                 <h2>{quizzData[currentQuestion].question}</h2>
                 <ul className="answers">
@@ -156,15 +158,6 @@ useEffect(() => {
                   ))}
                 </ul>
               </div>
-
-              {
-                selectedAnswer !== null ? (
-                selectedAnswer === quizzData[currentQuestion].answer ? (
-                <p className="correct-answer">That's correct answer!</p>
-              ) : (
-                <p className="incorrect-answer">That's incorrect answer!</p>
-              )) : null
-              }
 
               <div className="nav-button">
                 <button onClick={goBack}>Previous</button>

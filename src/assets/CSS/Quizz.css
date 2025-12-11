@@ -1,0 +1,138 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    border: 1px solid;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(../meow.jpg);
+     background-size: cover;       
+    background-repeat: no-repeat;  
+    background-position: left;   
+    
+}
+
+.container{
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 15px;
+    margin-left: 700px;
+    background: #fff;
+}
+
+.quizz{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title{
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+}
+
+.question li{
+    margin-top: 20px;
+    list-style: none;
+}
+
+.answers li button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #f0f0f0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.2s ease; 
+}
+
+
+.answers li button:hover {
+    background: #ccc;
+    transform: scale(1.02); 
+}
+
+
+.answers li button.correct {
+    background: #4CAF50; 
+    color: #fff;
+    border: none;
+}
+
+
+.answers li button.wrong {
+    background: #f44336; 
+    color: #fff;
+    border: none;
+}
+
+.correct-answer{
+    color: #4CAF50;
+}
+
+.incorrect-answer{
+    color: #f44336;
+}
+
+.nav-button {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-button button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #50466b;
+    color: #fff;
+}
+
+.result-screen {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.result-screen h2 {
+    margin-bottom: 40px;
+}
+
+.summary-box {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.total,
+.correct,
+.wrong {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.correct {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.wrong {
+  color: #c0392b;
+  font-weight: bold;
+}
